@@ -102,8 +102,12 @@ A feature-by-feature manual test plan lives in [docs/manual-testing.md](docs/man
 
 Releases are published by PR to
 [zed-industries/extensions](https://github.com/zed-industries/extensions):
-add this repo as a submodule under `extensions/pkl` and register it in
-`extensions.toml` with a version matching `extension.toml`.
+this repo is registered as the `pkl-lang` extension (submodule
+`extensions/pkl-lang`), with the `extensions.toml` version matching
+`extension.toml`. The `pkl` ID belongs to a pre-existing community extension;
+this one differentiates with snippets, live evaluation tasks, and a richer
+query set. To release a new version: bump `version` in `extension.toml`,
+merge to `main`, then update the submodule + version in the registry.
 
 ## License
 
