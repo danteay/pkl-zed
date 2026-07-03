@@ -1,0 +1,31 @@
+[
+  {
+    "label": "pkl eval $ZED_FILENAME",
+    "command": "pkl",
+    "args": ["eval", "\"$ZED_FILE\""],
+    "tags": ["pkl-eval"]
+  },
+  {
+    "label": "pkl eval $ZED_FILENAME (json)",
+    "command": "pkl",
+    "args": ["eval", "--format", "json", "\"$ZED_FILE\""],
+    "tags": ["pkl-eval"]
+  },
+  {
+    "label": "pkl eval $ZED_FILENAME (yaml)",
+    "command": "pkl",
+    "args": ["eval", "--format", "yaml", "\"$ZED_FILE\""],
+    "tags": ["pkl-eval"]
+  },
+  {
+    "label": "pkl test $ZED_FILENAME",
+    "command": "pkl",
+    "args": ["test", "\"$ZED_FILE\""],
+    "tags": ["pkl-eval"]
+  },
+  {
+    "label": "pkl project resolve",
+    "command": "pkl",
+    "args": ["project", "resolve"]
+  }
+]

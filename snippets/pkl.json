@@ -1,0 +1,100 @@
+{
+  "Module declaration": {
+    "prefix": "module",
+    "body": ["module ${1:com.example.${2:name}}", "", "$0"],
+    "description": "Declare a named Pkl module"
+  },
+  "Amends clause": {
+    "prefix": "amends",
+    "body": ["amends \"${1:template.pkl}\"", "", "$0"],
+    "description": "Amend a parent template"
+  },
+  "Extends clause": {
+    "prefix": "extends",
+    "body": ["extends \"${1:base.pkl}\"", "", "$0"],
+    "description": "Extend a parent module"
+  },
+  "Import": {
+    "prefix": "import",
+    "body": ["import \"${1:module.pkl}\"${2: as ${3:alias}}"],
+    "description": "Import a module"
+  },
+  "Glob import": {
+    "prefix": "importglob",
+    "body": ["import* \"${1:**.pkl}\" as ${2:modules}"],
+    "description": "Import modules matching a glob"
+  },
+  "Class": {
+    "prefix": "class",
+    "body": ["class ${1:Name} {", "  ${2:property}: ${3:String}", "}", "$0"],
+    "description": "Define a class"
+  },
+  "Open class": {
+    "prefix": "openclass",
+    "body": ["open class ${1:Name} {", "  ${2:property}: ${3:String}", "}", "$0"],
+    "description": "Define an extendable class"
+  },
+  "Type alias": {
+    "prefix": "typealias",
+    "body": ["typealias ${1:Name} = ${2:String|Int}"],
+    "description": "Define a type alias"
+  },
+  "Function": {
+    "prefix": "function",
+    "body": ["function ${1:name}(${2:param}: ${3:String}): ${4:String} = ${0:expression}"],
+    "description": "Define a method"
+  },
+  "Local property": {
+    "prefix": "local",
+    "body": ["local ${1:name} = ${0:value}"],
+    "description": "Define a local property"
+  },
+  "Hidden property": {
+    "prefix": "hidden",
+    "body": ["hidden ${1:name}: ${2:String} = ${0:value}"],
+    "description": "Define a property excluded from rendered output"
+  },
+  "For generator": {
+    "prefix": "for",
+    "body": ["for (${1:item} in ${2:collection}) {", "  $0", "}"],
+    "description": "Generate object members from a collection"
+  },
+  "When generator": {
+    "prefix": "when",
+    "body": ["when (${1:condition}) {", "  $0", "}"],
+    "description": "Conditionally include object members"
+  },
+  "Let expression": {
+    "prefix": "let",
+    "body": ["let (${1:name} = ${2:value})", "  $0"],
+    "description": "Bind a value in an expression"
+  },
+  "If expression": {
+    "prefix": "if",
+    "body": ["if (${1:condition}) ${2:then} else ${0:otherwise}"],
+    "description": "Conditional expression"
+  },
+  "New object": {
+    "prefix": "new",
+    "body": ["new ${1:Type} {", "  $0", "}"],
+    "description": "Instantiate an object"
+  },
+  "Output block": {
+    "prefix": "output",
+    "body": ["output {", "  renderer = new ${1|JsonRenderer,YamlRenderer,PListRenderer,PropertiesRenderer,XmlRenderer|} {}", "}", "$0"],
+    "description": "Configure the module output format"
+  },
+  "Test module": {
+    "prefix": "test",
+    "body": [
+      "amends \"pkl:test\"",
+      "",
+      "facts {",
+      "  [\"${1:describes the fact}\"] {",
+      "    ${0:expression}",
+      "  }",
+      "}"
+    ],
+    "description": "Scaffold a pkl:test module"
+  }
+}

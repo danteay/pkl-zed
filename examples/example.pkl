@@ -1,0 +1,45 @@
+/// An example module to manually verify highlighting, outline, snippets,
+/// hover docs, go-to-definition, and the `pkl eval` run button.
+module com.example.server
+
+import "pkl:math"
+
+typealias Port = Int(isBetween(1024, 65535))
+
+class Endpoint {
+  host: String = "localhost"
+  port: Port = 8080
+  secure: Boolean = false
+
+  type: String = "http"
+
+  hidden scheme: String = if (this.secure) "https" else "http"
+
+  function url(path: String): String = "\(scheme)://\(host):\(port)\(path)"
+}
+
+local defaultTimeout = 30.s
+
+local someScape = "a\tb\nc\rf"
+
+endpoints: Listing<Endpoint> = new {
+  new { host = "api.example.com"; port = 8443; secure = true }
+  new { host = "internal.example.com" }
+}
+
+config {
+  timeoutSeconds = defaultTimeout.toUnit("s").value
+  maxConnections = math.maxInt8.toInt()
+  for (endpoint in endpoints) {
+    ["\(endpoint.host)"] = endpoint.url("/health")
+  }
+  when (endpoints.length > 1) {
+    loadBalanced = true
+  }
+}
+
+// An explicit `output.renderer` overrides the CLI `--format` flag, which
+// would break the (json)/(yaml) eval tasks. Uncomment to force one format:
+// output {
+//   renderer = new YamlRenderer {}
+// }

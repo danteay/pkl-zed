@@ -1,0 +1,12 @@
+# Rust
+target/
+
+# Zed dev-extension build artifacts (regenerated on every dev install)
+grammars/
+extension.wasm
+
+# devenv
+.devenv*
+devenv.local.nix
+.direnv/
+.pre-commit-config.yaml
